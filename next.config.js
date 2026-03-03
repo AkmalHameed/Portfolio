@@ -14,10 +14,13 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
     unoptimized: true,
   },
-  // Enable if you want to use environment variables from .env files
   env: {
     NEXT_PUBLIC_STRAPI_API_URL: process.env.NEXT_PUBLIC_STRAPI_API_URL,
     STRAPI_API_URL: process.env.STRAPI_API_URL,
