@@ -1,6 +1,12 @@
+cat > src/components/ProjectCard.tsx << 'EOF'
 import Link from 'next/link'
-import Image from 'next/image'
 import { getStrapiMedia } from '@/lib/utils'
+
+const projectImages: { [key: string]: string } = {
+  'mail-management-jwt': 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&q=80',
+  'car-service-reservation': 'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=800&q=80',
+  'college-admissions-system': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+}
 
 interface ProjectCardProps {
   project: {
@@ -17,32 +23,21 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, slug, image, tech_stack } = project.attributes
-
-  // Convert tech_stack string to array
   const techArray = tech_stack ? tech_stack.split(',').map(t => t.trim()) : []
+  const fallbackImage = projectImages[slug] || `https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80`
+
+  const imageUrl = image?.data ? getStrapiMedia(image) : fallbackImage
 
   return (
     <Link href={`/projects/${slug}`}>
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        {/* Project Image - show placeholder if no image */}
-        <div className="relative h-48 w-full bg-gradient-to-br from-primary-400 to-primary-600">
-          {image ? (
-            <Image
-              src={getStrapiMedia(image) || '/placeholder.jpg'}
-              alt={title}
-              fill
-              className="object-cover"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full">
-              <span className="text-white text-4xl font-bold">
-                {title.charAt(0)}
-              </span>
-            </div>
-          )}
+        <div className="relative h-48 w-full">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover"
+          />
         </div>
-
-        {/* Project Info */}
         <div className="p-6">
           <h3 className="text-xl font-bold mb-2 hover:text-primary-600 transition">
             {title}
@@ -50,8 +45,6 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <p className="text-gray-600 mb-4 line-clamp-3">
             {description}
           </p>
-
-          {/* Tech Stack */}
           {techArray.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {techArray.map((tech, index) => (
@@ -71,3 +64,4 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 }
 
 export default ProjectCard
+EOF
