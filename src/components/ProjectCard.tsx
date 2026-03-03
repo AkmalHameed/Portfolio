@@ -10,7 +10,7 @@ interface ProjectCardProps {
       description: string
       slug: string
       image?: any
-      tech_stack?: string[]
+      tech_stack?: string
     }
   }
 }
@@ -18,20 +18,29 @@ interface ProjectCardProps {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, slug, image, tech_stack } = project.attributes
 
+  // Convert tech_stack string to array
+  const techArray = tech_stack ? tech_stack.split(',').map(t => t.trim()) : []
+
   return (
     <Link href={`/projects/${slug}`}>
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-        {/* Project Image */}
-        {image && (
-          <div className="relative h-48 w-full">
+        {/* Project Image - show placeholder if no image */}
+        <div className="relative h-48 w-full bg-gradient-to-br from-primary-400 to-primary-600">
+          {image ? (
             <Image
               src={getStrapiMedia(image) || '/placeholder.jpg'}
               alt={title}
               fill
               className="object-cover"
             />
-          </div>
-        )}
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <span className="text-white text-4xl font-bold">
+                {title.charAt(0)}
+              </span>
+            </div>
+          )}
+        </div>
 
         {/* Project Info */}
         <div className="p-6">
@@ -43,9 +52,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </p>
 
           {/* Tech Stack */}
-          {tech_stack && tech_stack.length > 0 && (
+          {techArray.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {tech_stack.map((tech, index) => (
+              {techArray.map((tech, index) => (
                 <span
                   key={index}
                   className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"

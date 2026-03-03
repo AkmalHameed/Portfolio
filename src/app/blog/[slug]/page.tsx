@@ -67,10 +67,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </header>
 
         <div className="prose prose-lg max-w-none mb-12">
-          <div className="text-gray-800 leading-relaxed whitespace-pre-line">
-            {typeof content === 'string' ? content : JSON.stringify(content)}
-          </div>
-        </div>
+        <div className="text-gray-800 leading-relaxed space-y-4">
+        {typeof content === 'string' 
+      ? content 
+      : content?.map((block: any, index: number) => {
+          if (block.type === 'paragraph') {
+            return (
+              <p key={index}>
+                {block.children.map((child: any) => child.text).join('')}
+              </p>
+            )
+          }
+          return null
+        })
+    }
+  </div>
+</div>
 
         <hr className="my-12 border-gray-300" />
 
