@@ -38,7 +38,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
         {/* Post Info */}
         <div className="p-6">
           <div className="flex items-center text-sm text-gray-500 mb-2">
-            <span>{formatDate(published_at || published || '')}</span>
+            <span>{formatDate(published_at || published || (post.attributes as any).publishedAt || '')}</span>
             {author && (
               <>
                 <span className="mx-2">•</span>
