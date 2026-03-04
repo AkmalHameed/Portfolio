@@ -3,7 +3,7 @@ import { getStrapiMedia } from '@/lib/utils'
 
 const projectImages: { [key: string]: string } = {
   'mail-management-jwt': 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&q=80',
-  'car-service-reservation': 'https://images.unsplash.com/photo-1632823471565-1ecdf5c6da1e?w=800&q=80',
+  'car-service-reservation': 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&q=80',
   'college-admissions-system': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
 }
 
