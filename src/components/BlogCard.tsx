@@ -23,8 +23,8 @@ const BlogCard = ({ post }: BlogCardProps) => {
   return (
     <Link href={`/blog/${slug}`}>
       <div className='bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300'>
-        <div className='h-48 w-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center'>
-          <span className='text-white text-4xl font-bold'>{title.charAt(0)}</span>
+        <div className='h-48 w-full relative overflow-hidden'>
+          <img src={slug === 'how-i-built-full-stack-portfolio' ? 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80' : 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80'} alt={title} className='w-full h-full object-cover' />
         </div>
         <div className='p-6'>
           <div className='flex items-center text-sm text-gray-500 mb-2'>
