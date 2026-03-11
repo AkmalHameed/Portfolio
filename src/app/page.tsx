@@ -30,7 +30,7 @@ export default async function Home() {
           Welcome to My Portfolio
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          I'm a full-stack developer passionate about creating beautiful and functional web applications.
+          Full-Stack Developer and Computer Programming & Analysis student at Durham College. Passionate about building clean, functional web applications.
         </p>
         <div className="flex gap-4 justify-center">
           <Link 
